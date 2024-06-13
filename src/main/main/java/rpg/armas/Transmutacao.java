@@ -1,8 +1,8 @@
 package main.main.java.rpg.armas;
 
 
-public class ArmaMagiaTransmutacao extends ArmaMago {
-    public ArmaMagiaTransmutacao() {
+public class Transmutacao extends ArmaMago {
+    public Transmutacao() {
         super("Magia da Transmutação", 0.25);
     }
 }

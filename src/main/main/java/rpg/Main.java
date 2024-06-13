@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-    
+
         // Leitura e criação dos personagens
         Personagem[] personagens = new Personagem[2];
         for (int i = 0; i < 2; i++) {
@@ -23,7 +23,7 @@ public class Main {
 
         // Impressão dos status iniciais dos personagens
         for (Personagem p : personagens) {
-            System.out.println(p.getStatus());
+            p.printStatus();
         }
 
         // Leitura e processamento da sequência de ataques
@@ -40,69 +40,39 @@ public class Main {
 
             // Impressão dos status dos personagens após cada ataque
             for (Personagem p : personagens) {
-                System.out.println(p.getStatus());
+                p.printStatus();
             }
         }
 
         scanner.close();
     }
 
-    private static Arma criarArma(int tipoPersonagem, int codigoArma) {
-        switch (tipoPersonagem) {
-            case 1:
-                return criarArmaMago(codigoArma);
-            case 2:
-                return criarArmaPaladino(codigoArma);
-            case 3:
-                return criarArmaClerigo(codigoArma);
+    private static Arma criarArma(int tipo, int codigoArma) {
+        switch (tipo) {
+            case 1: // Mago
+                if (codigoArma == 1) return new ArmaMago("Magia da Transmutação", 0.25);
+                if (codigoArma == 2) return new ArmaMago("Psi-kappa", 0.5);
+                break;
+            case 2: // Paladino
+                if (codigoArma == 1) return new ArmaPaladino("Espada", 0.3);
+                if (codigoArma == 2) return new ArmaPaladino("Lança", 0.5);
+                break;
+            case 3: // Clérigo
+                if (codigoArma == 1) return new ArmaClerigo("Martelo", 0.6);
+                if (codigoArma == 2) return new ArmaClerigo("Maça", 0.4);
+                break;
             default:
                 return null;
         }
-    }
-
-    private static Arma criarArmaMago(int codigoArma) {
-        switch (codigoArma) {
-            case 1:
-                return new ArmaMagiaTransmutacao();
-            case 2:
-                return new ArmaPsiKappa();
-            default:
-                return null;
-        }
-    }
-
-    private static Arma criarArmaPaladino(int codigoArma) {
-        switch (codigoArma) {
-            case 1:
-                return new ArmaEspada();
-            case 2:
-                return new ArmaLança();
-            default:
-                return null;
-        }
-    }
-
-    private static Arma criarArmaClerigo(int codigoArma) {
-        switch (codigoArma) {
-            case 1:
-                return new ArmaMartelo();
-            case 2:
-                return new ArmaMaça();
-            default:
-                return null;
-        }
+        return null;
     }
 
     private static Personagem criarPersonagem(int tipo, double saude, double forca, double destreza, Arma arma) {
         switch (tipo) {
-            case 1:
-                return new Mago(saude, forca, destreza, arma);
-            case 2:
-                return new Paladino(saude, forca, destreza, arma);
-            case 3:
-                return new Clerigo(saude, forca, destreza, arma);
-            default:
-                return null;
+            case 1: return new Mago(saude, forca, destreza, (ArmaMago) arma);
+            case 2: return new Paladino(saude, forca, destreza, (ArmaPaladino) arma);
+            case 3: return new Clerigo(saude, forca, destreza, (ArmaClerigo) arma);
+            default: return null;
         }
     }
 }

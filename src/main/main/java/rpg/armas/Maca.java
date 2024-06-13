@@ -1,7 +1,7 @@
 package main.main.java.rpg.armas;
 
-public class ArmaMaça extends ArmaClerigo {
-    public ArmaMaça() {
+public class Maca extends ArmaClerigo {
+    public Maca() {
         super("Maça", 0.4);
     }
 }

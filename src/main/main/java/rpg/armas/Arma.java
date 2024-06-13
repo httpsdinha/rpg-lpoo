@@ -1,5 +1,4 @@
 package main.main.java.rpg.armas;
-
 public abstract class Arma {
     private String nome;
     private double modificador;
@@ -17,4 +16,3 @@ public abstract class Arma {
         return modificador;
     }
 }
-
